@@ -1,3 +1,3 @@
 resources:
-  - templates/constraint-template.yaml
-  - templates/k8s-psp-privileged-container.yaml
+  - templates/constrainttemplate.yaml
+  - templates/constraint.yaml
