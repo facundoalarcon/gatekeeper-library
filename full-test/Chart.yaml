@@ -3,7 +3,4 @@ name: gatekeeper-constraints
 description: Gatekeeper Constraints Helm Chart
 version: 0.1.0
 appVersion: 0.1.0
-dependencies:
-  - name: full-test
-    version: "1.0.0"
-    repository: https://github.com/facundoalarcon/gatekeeper-library
+
