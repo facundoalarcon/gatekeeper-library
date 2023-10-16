@@ -3,6 +3,7 @@ kind: ConstraintTemplate
 metadata:
   name: k8spspallowprivilegeescalationcontainer
   annotations:
+    argocd.argoproj.io/sync-wave: "1"
     metadata.gatekeeper.sh/title: "Allow Privilege Escalation in Container"
     metadata.gatekeeper.sh/version: 1.0.1
     description: >-
