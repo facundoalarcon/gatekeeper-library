@@ -1,5 +1,9 @@
 apiVersion: v2
 name: gatekeeper-constraints
-description: Helm Chart para instalar ConstraintTemplate y K8sPSPPrivilegedContainer
+description: Gatekeeper Constraints Helm Chart
 version: 0.1.0
-appVersion: 1.0
+appVersion: 0.1.0
+dependencies:
+  - name: full-test
+    version: "1.0.0"
+    repository: https://github.com/facundoalarcon/gatekeeper-library
