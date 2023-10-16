@@ -1,9 +1,7 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: K8sPSPPrivilegedContainer
+kind: K8sPSPAllowPrivilegeEscalationContainer
 metadata:
-  name: psp-privileged-container
-  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-  argocd.argoproj.io/sync-wave: "5"
+  name: psp-allow-privilege-escalation-container
 spec:
   match:
     kinds:
