@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pause-pod-test
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  containers:
+  - name: pause
+    image: busybox
+    command: ["sleep", "240"]
+  restartPolicy: Never
