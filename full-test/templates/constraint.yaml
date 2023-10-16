@@ -1,9 +1,8 @@
 {{- if .Values.constraint-template.enabled }}
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sPSPPrivilegedContainer
 metadata:
   name: psp-privileged-container
-  labels:
-    # Tus etiquetas aquí
-
 spec:
   match:
     kinds:
