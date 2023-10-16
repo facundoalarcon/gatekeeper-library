@@ -2,6 +2,7 @@ apiVersion: constraints.gatekeeper.sh/v1beta1
 kind: K8sPSPPrivilegedContainer
 metadata:
   name: psp-privileged-container
+  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
   argocd.argoproj.io/sync-wave: "5"
 spec:
   match:
