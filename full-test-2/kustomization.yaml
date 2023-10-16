@@ -1,5 +1,9 @@
-kind: Application
-spec:
-  source:
-    directory:
-      recurse: true
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- privileged-container/constrainttemplate.yaml
+- privileged-container/pause.yaml
+- privileged-container/constraint.yaml
+
+namespace: gatekeeper-system
