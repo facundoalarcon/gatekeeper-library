@@ -1,3 +1,4 @@
 resources:
 - privileged-container/constrainttemplate.yaml
 - privileged-container/constraint.yaml
+namespace: gatekeeper-system
