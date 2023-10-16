@@ -1,8 +1,9 @@
 apiVersion: templates.gatekeeper.sh/v1beta1
 kind: ConstraintTemplate
 metadata:
-  name: k8spspprivilegedcontainer
+  name: K8sPSPPrivilegedContainer
   annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "1"
 spec:
   crd:
