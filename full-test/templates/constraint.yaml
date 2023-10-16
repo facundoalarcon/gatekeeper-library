@@ -1,9 +1,12 @@
-apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: K8sPSPPrivilegedContainer
+{{- if .Values.constraint-template.enabled }}
 metadata:
   name: psp-privileged-container
+  labels:
+    # Tus etiquetas aquí
+
 spec:
   match:
     kinds:
       - apiGroups: [""]
         kinds: ["Pod"]
+{{- end }}
