@@ -1,0 +1,3 @@
+resources:
+- privileged-container/constrainttemplate.yaml
+- privileged-container/constraint.yaml
