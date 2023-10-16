@@ -3,7 +3,5 @@ kind: Kustomization
 
 resources:
 - privileged-container/constrainttemplate.yaml
-- privileged-container/pause.yaml
-- privileged-container/constraint.yaml
 
 namespace: gatekeeper-system
