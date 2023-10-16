@@ -1,3 +1,5 @@
 resources:
   - templates/constrainttemplate.yaml
   - templates/constraint.yaml
+constrainttemplate:
+  enabled: true
