@@ -3,6 +3,10 @@ kind: ConstraintTemplate
 metadata:
   name: blocklatesttag
   annotations:
+    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    metadata.gatekeeper.sh/title: "Last Label in Container"
+    metadata.gatekeeper.sh/version: 1.0.1
     description: Blocks container images from using the latest tag
 spec:
   crd:
