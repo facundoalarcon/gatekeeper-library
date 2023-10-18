@@ -1,30 +1,30 @@
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  name: k8spspprivilegedcontainer
+  name: k8spspallowprivilegeescalationcontainer
   annotations:
     argocd.argoproj.io/sync-wave: "1"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-    metadata.gatekeeper.sh/title: "Privileged Container"
+    metadata.gatekeeper.sh/title: "Allow Privilege Escalation in Container"
     metadata.gatekeeper.sh/version: 1.0.1
     description: >-
-      Controls the ability of any container to enable privileged mode.
-      Corresponds to the `privileged` field in a PodSecurityPolicy. For more
+      Controls restricting escalation to root privileges. Corresponds to the
+      `allowPrivilegeEscalation` field in a PodSecurityPolicy. For more
       information, see
-      https://kubernetes.io/docs/concepts/policy/pod-security-policy/#privileged
+      https://kubernetes.io/docs/concepts/policy/pod-security-policy/#privilege-escalation
 spec:
   crd:
     spec:
       names:
-        kind: K8sPSPPrivilegedContainer
+        kind: K8sPSPAllowPrivilegeEscalationContainer
       validation:
         openAPIV3Schema:
           type: object
           description: >-
-            Controls the ability of any container to enable privileged mode.
-            Corresponds to the `privileged` field in a PodSecurityPolicy. For more
+            Controls restricting escalation to root privileges. Corresponds to the
+            `allowPrivilegeEscalation` field in a PodSecurityPolicy. For more
             information, see
-            https://kubernetes.io/docs/concepts/policy/pod-security-policy/#privileged
+            https://kubernetes.io/docs/concepts/policy/pod-security-policy/#privilege-escalation
           properties:
             exemptImages:
               description: >-
@@ -39,31 +39,39 @@ spec:
   targets:
     - target: admission.k8s.gatekeeper.sh
       rego: |
-        package k8spspprivileged
+        package k8spspallowprivilegeescalationcontainer
 
         import data.lib.exclude_update.is_update
         import data.lib.exempt_container.is_exempt
 
         violation[{"msg": msg, "details": {}}] {
-            # spec.containers.privileged field is immutable.
+            # spec.containers.securityContext.allowPrivilegeEscalation field is immutable.
             not is_update(input.review)
 
             c := input_containers[_]
             not is_exempt(c)
-            c.securityContext.privileged
-            msg := sprintf("Privileged container is not allowed: %v, securityContext: %v", [c.name, c.securityContext])
+            input_allow_privilege_escalation(c)
+            msg := sprintf("Privilege escalation container is not allowed: %v", [c.name])
         }
 
+        input_allow_privilege_escalation(c) {
+            not has_field(c, "securityContext")
+        }
+        input_allow_privilege_escalation(c) {
+            not c.securityContext.allowPrivilegeEscalation == false
+        }
         input_containers[c] {
             c := input.review.object.spec.containers[_]
         }
-
         input_containers[c] {
             c := input.review.object.spec.initContainers[_]
         }
-
         input_containers[c] {
             c := input.review.object.spec.ephemeralContainers[_]
+        }
+        # has_field returns whether an object has a field
+        has_field(object, field) = true {
+            object[field]
         }
       libs:
         - |
