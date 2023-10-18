@@ -5,6 +5,8 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "1"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    metadata.gatekeeper.sh/title: "Run As Root Container"
+    metadata.gatekeeper.sh/version: 1.0.1
 spec:
   crd:
     spec:
