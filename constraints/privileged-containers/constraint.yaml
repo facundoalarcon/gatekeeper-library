@@ -9,5 +9,5 @@ spec:
   match:
     kinds:
       - apiGroups: [""]
-        kinds: ["Pod","Deployment"],
+        kinds: ["Pod"],
     excludedNamespaces: ["kube-system","gatekeeper-system"]

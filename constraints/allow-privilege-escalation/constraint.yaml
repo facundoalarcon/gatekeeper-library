@@ -9,4 +9,4 @@ spec:
   match:
     kinds:
       - apiGroups: [""]
-        kinds: ["Pod","Deployment"]
+        kinds: ["Pod"]

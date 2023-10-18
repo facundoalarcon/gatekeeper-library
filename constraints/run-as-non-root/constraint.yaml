@@ -12,3 +12,4 @@ spec:
           - 'apps'
         kinds:
           - Deployment
+          - Pod
