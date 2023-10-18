@@ -2,7 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
+- allow-privilege-escalation/constrainttemplate.yaml
+- allow-privilege-escalation/constraint.yaml
 - privileged-container/constrainttemplate.yaml
 - privileged-container/constraint.yaml
+- label/constrainttemplate.yaml
+- label/constraint.yaml
 
 namespace: gatekeeper-system
