@@ -4,8 +4,8 @@ kind: Kustomization
 resources:
 - allow-privilege-escalation/template.yaml
 - allow-privilege-escalation/constraint.yaml
-- privileged-container/template.yaml
-- privileged-container/constraint.yaml
+- privileged-containers/template.yaml
+- privileged-containers/constraint.yaml
 - label/template.yaml
 - label/constraint.yaml
 
