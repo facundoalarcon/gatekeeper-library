@@ -9,6 +9,6 @@ spec:
   match:
     kinds:
       - apiGroups: [""]
-        kinds: ["Pod","Deployment"],
+        kinds: ["Pod","Deployment"]
   parameters:
     annotation: "no-latest-tag-used"
