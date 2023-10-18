@@ -8,5 +8,7 @@ resources:
 - privileged-containers/constraint.yaml
 - label/template.yaml
 - label/constraint.yaml
+- run-as-non-root/template.yaml
+- run-as-non-root/constraint.yaml
 
 namespace: gatekeeper-system
